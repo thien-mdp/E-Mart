@@ -48,7 +48,7 @@ const Home = () => {
         </Swiper>
       </div>
       <div className="product-loop my-5 grid grid-cols-4 place-items-center gap-0">
-        <div className="w-[90px] animate-slidedown sm:w-[160px] md:w-[192px] lg:w-[300px] h-auto p-2 ">
+        <div className="w-[90px]  animate-slidedown sm:w-[160px] md:w-[192px] lg:w-[300px] h-auto p-2 ">
           <a
             href="#"
             className=" group flex flex-col items-center justify-center "
@@ -62,13 +62,13 @@ const Home = () => {
               />
             </div>
             <div className="product-title text-center">
-              <span className="text-[10px] sm:text-[13px] md:text-[14px]  font-extralight group-hover:text-teal-400">
+              <span className="text-[10px] sm:text-[13px] md:text-[14px] text-black  font-extralight group-hover:text-teal-400">
                 3D Printers
               </span>
             </div>
           </a>
         </div>
-        <div className="w-[90px] animate-slidedown sm:w-[160px] md:w-[192px] lg:w-[300px] h-auto p-2 ">
+        <div className="w-[90px]  animate-slidedown sm:w-[160px] md:w-[192px] lg:w-[300px] h-auto p-2 ">
           <a
             href="#"
             className=" group flex flex-col items-center justify-center "
@@ -82,13 +82,13 @@ const Home = () => {
               />
             </div>
             <div className="product-title text-center">
-              <span className="text-[10px] sm:text-[13px] md:text-[14px]  font-extralight group-hover:text-teal-400">
+              <span className="text-[10px] sm:text-[13px] md:text-[14px]  text-black font-extralight group-hover:text-teal-400">
                 Control Board
               </span>
             </div>
           </a>
         </div>
-        <div className="w-[90px] animate-slidedown sm:w-[160px] md:w-[192px] lg:w-[300px] h-auto p-2 ">
+        <div className="w-[90px]  animate-slidedown sm:w-[160px] md:w-[192px] lg:w-[300px] h-auto p-2 ">
           <a
             href="#"
             className=" group flex flex-col items-center justify-center "
@@ -102,13 +102,13 @@ const Home = () => {
               />
             </div>
             <div className="product-title text-center w-full ">
-              <span className="text-[10px] sm:text-[13px] md:text-[14px] font-extralight group-hover:text-teal-400">
+              <span className="text-[10px] sm:text-[13px] md:text-[14px] text-black font-extralight group-hover:text-teal-400">
                 Extruder & Hotend
               </span>
             </div>
           </a>
         </div>
-        <div className="w-[90px] animate-slidedown sm:w-[160px] md:w-[192px] lg:w-[300px] h-auto p-2">
+        <div className="w-[90px]  animate-slidedown sm:w-[160px] md:w-[192px] lg:w-[300px] h-auto p-2">
           <a
             href="#"
             className=" group flex flex-col items-center justify-center "
@@ -122,7 +122,7 @@ const Home = () => {
               />
             </div>
             <div className="product-title text-center">
-              <span className="text-[10px] sm:text-[13px] md:text-[14px] font-extralight group-hover:text-teal-400">
+              <span className="text-[10px] sm:text-[13px] md:text-[14px] text-black font-extralight group-hover:text-teal-400">
                 Screen & LCD
               </span>
             </div>

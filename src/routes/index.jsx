@@ -1,5 +1,5 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { routesConfig } from './constants';
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import {routesConfig} from "./constants";
 
 const router = createBrowserRouter(routesConfig);
 
