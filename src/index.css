@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-white;
+}
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  @apply text-teal-400;
+}
