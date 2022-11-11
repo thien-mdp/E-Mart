@@ -1,10 +1,11 @@
 import React from "react";
 import {BsCartPlus} from "react-icons/bs";
+
 const Card = () => {
   return (
-    <div className="card min-w-[50%] sm:min-w-[25%] md:min-w-[20%]   p-3 shadow-lg">
+    <div className="card min-w-[50%] sm:min-w-[25%] md:min-w-[20%]  p-3 border m-2">
       <a href="#" className=" group">
-        <div className="card-thumb">
+        <div className="card-thumb overflow-hidden">
           <img
             src="https://cdn.shopify.com/s/files/1/1619/4791/products/2_b6f9123e-4cd7-42d4-a0e8-340f2483312d_320x.jpg?v=1656744827"
             alt="card"
@@ -14,7 +15,7 @@ const Card = () => {
           />
         </div>
         <div className="card-title break-word my-1 py-1">
-          <p className="leading-0 text-[10px] sm:text-[13px]  font-semibold group-hover:text-teal-400">
+          <p className="leading-0 text-[10px] sm:text-[13px] text-black font-semibold group-hover:text-teal-400">
             BIGTREETECH PI4B Adapter V1.0 for CM4 or CB1
           </p>
         </div>
@@ -37,7 +38,7 @@ export const CardSeeMore = () => {
   return (
     <a
       href="/"
-      className="card cursor-pointer flex items-center justify-center  min-w-[50%] sm:min-w-[25%] h-full md:min-w-[20%] w-full  p-5 border-2 border-teal-400 shadow-lg text-teal-400 font-semibold hover:text-white hover:bg-teal-400"
+      className="card cursor-pointer flex items-center justify-center  min-w-[50%] sm:min-w-[25%] h-full md:min-w-[20%] w-full  p-3 border border-teal-400 shadow-lg text-teal-400 font-semibold hover:text-white hover:bg-teal-400 m-2"
     >
       See more | shop all
     </a>

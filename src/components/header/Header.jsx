@@ -26,26 +26,13 @@ const HeaderStyles = styled.header`
 
 const Header = () => {
   const [showMenu, setShowMenu] = React.useState(false);
-  const [bgHeader, setBgHeader] = React.useState(false);
 
-  React.useLayoutEffect(() => {
-    const handleScroll = () => {
-      const offset = window.scrollY;
-      if (offset > 120) {
-        setBgHeader(true);
-      } else {
-        setBgHeader(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-  }, []);
   return (
     <HeaderStyles
-      className={`py-3  top-header z-[999]  w-full transition-all fixed  h-[68px]  right-0 left-0 ${
-        bgHeader ? "bg-teal-400 " : "bg-black"
+      className={`py-3  top-header z-[999]  w-full transition-all fixed  h-[68px]  right-0 left-0 bg-black
       }`}
     >
-      <div className="mx-auto h-full  max-w-[1200px] flex items-center justify-between">
+      <div className="mx-auto px-5  h-full  max-w-[1200px] flex items-center justify-between">
         <div className="sm:hidden menu-mobile text-white text-[20px]">
           <HiMenuAlt2
             className="cursor-pointer"
@@ -54,7 +41,7 @@ const Header = () => {
         </div>
         <div className="hidden sm:flex  search-input  items-center gap-3">
           <div className="logo">
-            <h1 className="text-white">LOGO</h1>
+            <h1 className="text-white mb-0">LOGO</h1>
           </div>
           {/* <Input.Search placeholder="input search loading with enterButton" loading enterButton /> */}
         </div>

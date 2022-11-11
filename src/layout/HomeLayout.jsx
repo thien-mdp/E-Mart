@@ -6,9 +6,12 @@ import Footer from "../components/footer";
 const LayoutStyles = styled.div``;
 const ContainerStyles = styled.div`
   max-width: 1200px;
+  background-color: white;
   margin: 0 auto;
   z-index: 0;
   padding-top: 68px;
+  padding-left: 20px;
+  padding-right: 20px;
 `;
 const HomeLayout = () => {
   return (
@@ -17,7 +20,7 @@ const HomeLayout = () => {
       <ContainerStyles>
         <Outlet />
       </ContainerStyles>
-      <Footer />
+      {/* <Footer /> */}
     </LayoutStyles>
   );
 };
