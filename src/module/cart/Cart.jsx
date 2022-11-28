@@ -16,7 +16,6 @@ import {deleteItem} from "../../stores/Cart/cartSlice";
 const CartStyles = styled.div`
   width: 100%;
   height: 100vh;
-
   z-index: 0;
   .ant-btn-primary {
     background-color: #1890ff !important;
@@ -28,7 +27,6 @@ const ActionStyles = styled.div`
     & > span {
       top: 9px;
       right: 4px;
-
       cursor: pointer;
       position: absolute;
       border: none;

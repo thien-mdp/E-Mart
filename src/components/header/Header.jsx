@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {AiOutlineShoppingCart, AiOutlineClose} from "react-icons/ai";
 import {FaRegUserCircle} from "react-icons/fa";
 import {HiMenuAlt2} from "react-icons/hi";
-import {Input} from "antd";
+import {Input, Dropdown} from "antd";
 import styled from "styled-components";
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
@@ -15,29 +15,57 @@ const HeaderStyles = styled.header`
   .cart {
     position: relative;
     .has-item {
-      font-size: 9px;
+      font-size: 12px;
       position: absolute;
-      width: 15px;
-      height: 15px;
+      width: 18px;
+      height: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 1rem;
 
-      top: -6px;
+      top: -7px;
       right: -7px;
     }
   }
 `;
 
+
 const Header = () => {
   const [showMenu, setShowMenu] = React.useState(false);
   const {user} = useSelector((state) => state.authReducer);
   const {listItems} = useSelector((state) => state.cartReducer);
-
   const {openModal} = useModal();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const items = [
+    {
+      key: '1',
+      label: (
+        <a target="_blank" href="#" onClick={(e)=> e.preventDefault()}>
+          Infomation
+        </a>
+      ),
+    },
+    {
+      key: '2',
+      label: (
+        <a target="_blank" href="#" onClick={(e)=> e.preventDefault()}>
+          Change Password
+        </a>
+      ),
+    },
+    {
+      key: '3',
+      label: (
+        <button target="_blank" className="w-full text-left hover:font-bold hover:text-rose-300 " onClick={() => SignOut()}>
+          Logout
+        </button>
+      ),
+    }
+  ];
+
   const SignOut = () => {
     signOut(auth)
       .then(() => {
@@ -47,6 +75,7 @@ const Header = () => {
         // An error happened.
       });
   };
+
   const hanleClickCart = () => {
     if (user && user?.email) {
       navigate("/cart");
@@ -69,29 +98,39 @@ const Header = () => {
         </div>
         <div className="hidden sm:flex  search-input  items-center gap-3">
           <div className="logo">
-            <h1 className="text-white mb-0">LOGO</h1>
+            <a className="text-white mb-0 text-[20px] hover:text-teal-400" href="/">LOGO</a>
           </div>
         </div>
         <div className="sm:hidden logo-mobile absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4">
-          <h1 className="text-white">LOGO</h1>
+          <a href="/" className="text-white hover:text-teal-400">LOGO</a>
         </div>
 
         <div
           className="action-user
                 flex items-center gap-x-5 text-white text-[20px]"
         >
-          <div onClick={hanleClickCart} className="cart">
-            <AiOutlineShoppingCart className="cursor-pointer" />
-            <div className="has-item bg-teal-300">
+          <div onClick={hanleClickCart} className="cart hover:text-teal-400 ">
+            <AiOutlineShoppingCart className="cursor-pointer w-7 h-7" />
+            <div className="has-item bg-red-800">
               {listItems && listItems.length}
             </div>
           </div>
 
           {user?.displayName && (
+            <Dropdown
+              menu={{
+                items,
+              }}
+              dropdownRender={(menu) => (
+                <div className="dropdown-content">
+                  {menu}
+                </div>
+              )}
+            >
             <FaRegUserCircle
-              onClick={() => SignOut()}
-              className="cursor-pointer"
+              className="cursor-pointer w-6 h-6 hover:text-teal-400"
             />
+          </Dropdown>
           )}
         </div>
       </div>

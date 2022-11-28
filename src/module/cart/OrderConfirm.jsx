@@ -139,6 +139,7 @@ const OrderConfirm = ({closeModal}) => {
             htmlType="button"
             onClick={closeModal}
             type="danger"
+            className="text-gray-800"
           >
             close
           </Button>
@@ -147,6 +148,7 @@ const OrderConfirm = ({closeModal}) => {
             loading={isLoading || loading}
             htmlType="submit"
             type="primary"
+            className="text-gray-800"
           >
             Confirm
           </Button>
