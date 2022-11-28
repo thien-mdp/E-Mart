@@ -21,7 +21,7 @@ function ImageMagnifier({
     >
       <img
         src={src}
-        className={`mx-auto ${style}`}
+        className={`${style}`}
         style={{height: height, width: width}}
         onMouseEnter={(e) => {
           // update image size and turn-on magnifier

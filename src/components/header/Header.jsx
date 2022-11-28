@@ -4,6 +4,12 @@ import {FaRegUserCircle} from "react-icons/fa";
 import {HiMenuAlt2} from "react-icons/hi";
 import {Input} from "antd";
 import styled from "styled-components";
+import {Link, useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {signOut} from "firebase/auth";
+import {auth} from "../../firebase";
+import {updateUser} from "../../stores/Auth/authSlice";
+import {useModal} from "../../context/ModalContext";
 
 const HeaderStyles = styled.header`
   .cart {
@@ -26,6 +32,28 @@ const HeaderStyles = styled.header`
 
 const Header = () => {
   const [showMenu, setShowMenu] = React.useState(false);
+  const {user} = useSelector((state) => state.authReducer);
+  const {listItems} = useSelector((state) => state.cartReducer);
+
+  const {openModal} = useModal();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const SignOut = () => {
+    signOut(auth)
+      .then(() => {
+        dispatch(updateUser({}));
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  };
+  const hanleClickCart = () => {
+    if (user && user?.email) {
+      navigate("/cart");
+    } else {
+      openModal("login");
+    }
+  };
 
   return (
     <HeaderStyles
@@ -43,7 +71,6 @@ const Header = () => {
           <div className="logo">
             <h1 className="text-white mb-0">LOGO</h1>
           </div>
-          {/* <Input.Search placeholder="input search loading with enterButton" loading enterButton /> */}
         </div>
         <div className="sm:hidden logo-mobile absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4">
           <h1 className="text-white">LOGO</h1>
@@ -53,12 +80,19 @@ const Header = () => {
           className="action-user
                 flex items-center gap-x-5 text-white text-[20px]"
         >
-          <div className="cart">
+          <div onClick={hanleClickCart} className="cart">
             <AiOutlineShoppingCart className="cursor-pointer" />
-            <div className="has-item bg-teal-300">10</div>
+            <div className="has-item bg-teal-300">
+              {listItems && listItems.length}
+            </div>
           </div>
 
-          <FaRegUserCircle className="cursor-pointer" />
+          {user?.displayName && (
+            <FaRegUserCircle
+              onClick={() => SignOut()}
+              className="cursor-pointer"
+            />
+          )}
         </div>
       </div>
 
@@ -70,7 +104,6 @@ const Header = () => {
         <div className="btn-close">
           <AiOutlineClose onClick={() => setShowMenu(!showMenu)} />
         </div>
-        djsabdbsada
       </div>
     </HeaderStyles>
   );

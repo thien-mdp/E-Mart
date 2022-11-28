@@ -1,13 +1,40 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
 import {CATEGORY_SLIDE} from "./constants";
 import Card from "../../components/card";
 import TitleImage from "../../components/TitleImage/TitleImage";
-import {Select} from "antd";
+import {Select, Spin} from "antd";
 import Related from "../../components/related";
-
+import {collection, getDocs, query, where} from "firebase/firestore";
+import {db} from "../../firebase";
+import {Link, useSearchParams} from "react-router-dom";
+import slugify from "slugify";
+import {AiOutlineDropbox} from "react-icons/ai";
 const CategoryStyles = styled.div``;
 const Category = () => {
+  const [products, setProducts] = React.useState([]);
+  const [searchParams] = useSearchParams();
+  const nameCategory = searchParams.get("name").split("-").join(" ");
+  const [loading, setLoading] = React.useState(false);
+
+  useEffect(() => {
+    const getData = async () => {
+      setLoading(true);
+      try {
+        const colRef = collection(db, "products");
+        const documentSnapshots = await getDocs(
+          query(colRef, where("category", "==", nameCategory))
+        );
+        const getData = documentSnapshots.docs.map((doc) => doc.data());
+
+        setProducts(getData);
+      } catch (error) {
+      } finally {
+        setLoading(false);
+      }
+    };
+    getData();
+  }, [nameCategory]);
   return (
     <CategoryStyles>
       <div className="container-category">
@@ -20,7 +47,10 @@ const Category = () => {
                   key={item.name}
                   className="p-1 hover:bg-gray-100 flex items-center justify-center group transition-all cursor-pointer"
                 >
-                  <a href="#" className="border-none ">
+                  <Link
+                    to={`/category?name=${slugify(item.name)}`}
+                    className="border-none "
+                  >
                     <div className="flex gap-1 flex-col items-center h-auto w-[50px] md:w-[60px] lg:w-[80px] text-center justify-center">
                       <img
                         src={item.img}
@@ -33,14 +63,14 @@ const Category = () => {
                         </p>
                       </div>
                     </div>
-                  </a>
+                  </Link>
                 </div>
               ))}
             </div>
           </div>
         </div>
         <div className="title-category my-5 py-3">
-          <TitleImage>CONTROL BOARD</TitleImage>
+          <TitleImage>{nameCategory.toUpperCase()}</TitleImage>
         </div>
         <div className="list-product-category">
           <div className="category-filter  mb-3 mx-2">
@@ -51,39 +81,39 @@ const Category = () => {
                 options={[
                   {
                     value: "jack",
-                    label: "Jack",
+                    label: "A->Z",
                   },
                   {
                     value: "lucy",
-                    label: "Lucy",
+                    label: "Z->A",
                   },
+
                   {
-                    value: "disabled",
-                    disabled: true,
-                    label: "Disabled",
-                  },
-                  {
-                    value: "Yiminghe",
-                    label: "yiminghe",
+                    value: "",
+                    label: "",
                   },
                 ]}
               />
             </div>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 ">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-          </div>
+          {loading ? (
+            <div className="flex items-center justify-center">
+              <Spin />
+            </div>
+          ) : products.length > 0 ? (
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 ">
+              {products.map((item, index) => (
+                <Card key={item.id} data={item} />
+              ))}
+            </div>
+          ) : (
+            <div className="py-5">
+              <div className="mx-auto text-center">
+                <h1 className="text-gray-400">Not Found</h1>
+                <AiOutlineDropbox className="w-[70px] h-[70px] mx-auto" />
+              </div>
+            </div>
+          )}
         </div>
         <Related />
       </div>

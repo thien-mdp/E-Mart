@@ -1,29 +1,30 @@
 import React from "react";
 import {BsCartPlus} from "react-icons/bs";
+import {Link} from "react-router-dom";
 
-const Card = () => {
+const Card = ({data}) => {
   return (
     <div className="card min-w-[50%] sm:min-w-[25%] md:min-w-[20%]  p-3 border m-2">
-      <a href="#" className=" group">
+      <Link to={`/product/${data?.id}`} className=" group">
         <div className="card-thumb overflow-hidden">
           <img
-            src="https://cdn.shopify.com/s/files/1/1619/4791/products/2_b6f9123e-4cd7-42d4-a0e8-340f2483312d_320x.jpg?v=1656744827"
+            src={data?.image}
             alt="card"
-            className="object-cover w-full max-w-[320px] aspect-auto group-hover:scale-110 transition-all"
+            className="object-cover w-full h-auto max-h-[150px]  max-w-[320px] aspect-auto group-hover:scale-110 transition-all"
             loading="lazy"
             data-aos="zoom-in"
           />
         </div>
         <div className="card-title break-word my-1 py-1">
           <p className="leading-0 text-[10px] sm:text-[13px] text-black font-semibold group-hover:text-teal-400">
-            BIGTREETECH PI4B Adapter V1.0 for CM4 or CB1
+            {data?.title}
           </p>
         </div>
-      </a>
+      </Link>
       <div className="card-action  z-10 flex items-center flex-1 justify-between">
         <div className="card-price">
           <span className="text-xs font-extralight sm:text-[12px] md:text-[13px]">
-            100$
+            {`${data?.price}$`}
           </span>
         </div>
         <div className="card-button">
@@ -44,4 +45,4 @@ export const CardSeeMore = () => {
     </a>
   );
 };
-export default Card;
+export default React.memo(Card);

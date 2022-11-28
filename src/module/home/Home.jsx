@@ -1,5 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import {Link} from "react-router-dom";
+import slugify from "slugify";
+
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -11,6 +14,8 @@ import {Button} from "antd";
 import {AiOutlineArrowRight} from "react-icons/ai";
 import {CardSeeMore} from "../../components/card/Card";
 import TitleImage from "../../components/TitleImage/TitleImage";
+import {collection, getDocs, query, where} from "firebase/firestore";
+import {db} from "../../firebase";
 
 const HomeStyles = styled.div``;
 const Home = () => {
@@ -49,8 +54,8 @@ const Home = () => {
       </div>
       <div className="product-loop my-5 grid grid-cols-4 place-items-center gap-0">
         <div className="w-[90px]  animate-slidedown sm:w-[160px] md:w-[192px] lg:w-[300px] h-auto p-2 ">
-          <a
-            href="#"
+          <Link
+            to={`/category?name=${slugify("3D Printer")}`}
             className=" group flex flex-col items-center justify-center "
           >
             <div className="product-thumb overflow-hidden">
@@ -63,14 +68,14 @@ const Home = () => {
             </div>
             <div className="product-title text-center">
               <span className="text-[10px] sm:text-[13px] md:text-[14px] text-black  font-extralight group-hover:text-teal-400">
-                3D Printers
+                3D Printer
               </span>
             </div>
-          </a>
+          </Link>
         </div>
         <div className="w-[90px]  animate-slidedown sm:w-[160px] md:w-[192px] lg:w-[300px] h-auto p-2 ">
-          <a
-            href="#"
+          <Link
+            to={`/category?name=${slugify("Control Board")}`}
             className=" group flex flex-col items-center justify-center "
           >
             <div className="product-thumb overflow-hidden">
@@ -86,11 +91,11 @@ const Home = () => {
                 Control Board
               </span>
             </div>
-          </a>
+          </Link>
         </div>
         <div className="w-[90px]  animate-slidedown sm:w-[160px] md:w-[192px] lg:w-[300px] h-auto p-2 ">
-          <a
-            href="#"
+          <Link
+            to={`/category?name=${slugify("Extruder")}`}
             className=" group flex flex-col items-center justify-center "
           >
             <div className="product-thumb overflow-hidden">
@@ -103,14 +108,14 @@ const Home = () => {
             </div>
             <div className="product-title text-center w-full ">
               <span className="text-[10px] sm:text-[13px] md:text-[14px] text-black font-extralight group-hover:text-teal-400">
-                Extruder & Hotend
+                Extruder
               </span>
             </div>
-          </a>
+          </Link>
         </div>
         <div className="w-[90px]  animate-slidedown sm:w-[160px] md:w-[192px] lg:w-[300px] h-auto p-2">
-          <a
-            href="#"
+          <Link
+            to={`/category?name=${slugify("Monitor")}`}
             className=" group flex flex-col items-center justify-center "
           >
             <div className="product-thumb overflow-hidden ">
@@ -123,10 +128,10 @@ const Home = () => {
             </div>
             <div className="product-title text-center">
               <span className="text-[10px] sm:text-[13px] md:text-[14px] text-black font-extralight group-hover:text-teal-400">
-                Screen & LCD
+                Monitor
               </span>
             </div>
-          </a>
+          </Link>
         </div>
       </div>
       <TitleImage img="bg-usa-new">New Arrival</TitleImage>

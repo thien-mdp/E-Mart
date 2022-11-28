@@ -1,5 +1,4 @@
 import HomeLayout from "../layout/HomeLayout";
-import Home from "../module/home";
 import AdminLayout from "../layout/AdminLayout";
 import Admin from "../module/admin/Admin";
 import ManageUser from "../module/admin/ManageUser";
@@ -9,6 +8,8 @@ import Cart from "../module/cart/Cart";
 import Category from "../module/category";
 import Home from "../module/home";
 import Product from "../module/product";
+import BlankLayout from "../layout/BlankLayout";
+import {Login, Register} from "../module/Auth";
 
 export const routesConfig = [
   {
@@ -19,7 +20,7 @@ export const routesConfig = [
         element: <Home />,
       },
       {
-        path: "/products",
+        path: "/product/:id",
         element: <Product />,
       },
       {
@@ -54,6 +55,29 @@ export const routesConfig = [
       {
         path: "/admin/add-product",
         element: <AddProduct />,
+      },
+
+      {
+        path: "*",
+        element: <div>404</div>,
+      },
+    ],
+  },
+  {
+    element: <BlankLayout />,
+    children: [
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+
+      {
+        path: "*",
+        element: <div>404</div>,
       },
     ],
   },
