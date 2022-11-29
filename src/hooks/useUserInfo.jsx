@@ -18,7 +18,7 @@ const useUserInfo = () => {
             query(colRef, where("uid", "==", user.uid))
           );
           const getData = documentSnapshots.docs.map((doc) => doc.data());
-          console.log(getData);
+
           setUserInfo(getData);
         }
       } catch (error) {

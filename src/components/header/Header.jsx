@@ -30,7 +30,6 @@ const HeaderStyles = styled.header`
   }
 `;
 
-
 const Header = () => {
   const [showMenu, setShowMenu] = React.useState(false);
   const {user} = useSelector((state) => state.authReducer);
@@ -41,29 +40,33 @@ const Header = () => {
 
   const items = [
     {
-      key: '1',
+      key: "1",
       label: (
-        <a target="_blank" href="#" onClick={(e)=> e.preventDefault()}>
+        <a target="_blank" href="#" onClick={(e) => e.preventDefault()}>
           Infomation
         </a>
       ),
     },
     {
-      key: '2',
+      key: "2",
       label: (
-        <a target="_blank" href="#" onClick={(e)=> e.preventDefault()}>
+        <a target="_blank" href="#" onClick={(e) => e.preventDefault()}>
           Change Password
         </a>
       ),
     },
     {
-      key: '3',
+      key: "3",
       label: (
-        <button target="_blank" className="w-full text-left hover:font-bold hover:text-rose-300 " onClick={() => SignOut()}>
+        <button
+          target="_blank"
+          className="w-full text-left hover:font-bold hover:text-rose-300 "
+          onClick={() => SignOut()}
+        >
           Logout
         </button>
       ),
-    }
+    },
   ];
 
   const SignOut = () => {
@@ -98,12 +101,22 @@ const Header = () => {
         </div>
         <div className="hidden sm:flex  search-input  items-center gap-3">
           <div className="logo">
-            <a className="font-mono text-white mb-0 text-[20px] hover:text-teal-400" href="/">3D Printer</a>
+            <a
+              className="font-mono text-white mb-0 text-[20px] hover:text-teal-400"
+              href="/"
+            >
+              3D Printer
+            </a>
             {/* <img src='../../../logo.svg' className="max-w-[100px] bg-[#2bb4bf]  inline"/> */}
           </div>
         </div>
         <div className="sm:hidden logo-mobile absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4">
-          <a href="/" className="font-mono text-white mb-0 text-[20px] hover:text-teal-400">3D Printer</a>
+          <a
+            href="/"
+            className="font-mono text-white mb-0 text-[20px] hover:text-teal-400"
+          >
+            3D Printer
+          </a>
           {/* <img src='../../../logo.svg' className="max-w-[100px] bg-[#2bb4bf] inline"/> */}
         </div>
 
@@ -113,7 +126,11 @@ const Header = () => {
         >
           <div onClick={hanleClickCart} className="cart hover:text-teal-400 ">
             <AiOutlineShoppingCart className="cursor-pointer w-7 h-7" />
-            <div className="has-item bg-red-800 animate-bounce ">
+            <div
+              className={`has-item bg-red-800 ${
+                listItems.length > 0 && "animate-pulse"
+              } `}
+            >
               {listItems && listItems.length}
             </div>
           </div>
@@ -124,15 +141,11 @@ const Header = () => {
                 items,
               }}
               dropdownRender={(menu) => (
-                <div className="dropdown-content">
-                  {menu}
-                </div>
+                <div className="dropdown-content">{menu}</div>
               )}
             >
-            <FaRegUserCircle
-              className="cursor-pointer w-6 h-6 hover:text-teal-400"
-            />
-          </Dropdown>
+              <FaRegUserCircle className="cursor-pointer w-6 h-6 hover:text-teal-400" />
+            </Dropdown>
           )}
         </div>
       </div>

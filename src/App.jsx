@@ -3,10 +3,17 @@ import {ThemeProvider} from "styled-components";
 import Aos from "./Aos";
 import AppRoutes from "./routes";
 import {auth, db} from "./firebase";
-import {collection, getDocs} from "firebase/firestore";
+import {
+  collection,
+  getDoc,
+  getDocs,
+  onSnapshot,
+  query,
+  where,
+} from "firebase/firestore";
 import {useDispatch, useSelector} from "react-redux";
 import {onAuthStateChanged} from "firebase/auth";
-import {updateUser} from "./stores/Auth/authSlice";
+import {isLoading, updateUser} from "./stores/Auth/authSlice";
 import BlankLayout from "./layout/BlankLayout";
 import {Route, Routes} from "react-router-dom";
 import {Login, Register} from "./module/Auth";
@@ -22,16 +29,30 @@ import ManageProduct from "./module/admin/ManageProduct";
 import AddProduct from "./module/admin/AddProduct";
 import {updateCart} from "./stores/Cart/cartSlice";
 import OrderManagement from "./module/admin/OrderManagement";
+import {Spin} from "antd";
 
 function App() {
   const theme = {};
   const dispatch = useDispatch();
   const {listItems} = useSelector((state) => state.cartReducer);
+  const {loading} = useSelector((state) => state.authReducer);
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       if (user) {
-        dispatch(updateUser(user));
+        dispatch(isLoading(true));
+        const docRef = query(
+          collection(db, "users"),
+          where("uid", "==", user.uid)
+        );
+        onSnapshot(docRef, (querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            const dataUser = doc.data();
+
+            dispatch(updateUser({...user, ...dataUser}));
+          });
+          dispatch(isLoading(false));
+        });
       }
     });
   }, []);
@@ -42,6 +63,13 @@ function App() {
     }
   }, []);
 
+  if (loading) {
+    return (
+      <div className="w-full h-screen fixed inset-0 bg-white flex items-center justify-center">
+        <Spin />
+      </div>
+    );
+  }
   return (
     <ThemeProvider theme={theme}>
       <Aos />

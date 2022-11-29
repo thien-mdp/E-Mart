@@ -3,6 +3,8 @@ import Header from "../components/header";
 import styled from "styled-components";
 import {Outlet} from "react-router-dom";
 import Footer from "../components/footer";
+import {useSelector} from "react-redux";
+import {Spin} from "antd";
 const LayoutStyles = styled.div``;
 const ContainerStyles = styled.div`
   max-width: 1200px;
@@ -14,6 +16,8 @@ const ContainerStyles = styled.div`
   padding-right: 20px;
 `;
 const HomeLayout = () => {
+  const {loading} = useSelector((state) => state.authReducer);
+
   return (
     <LayoutStyles>
       <Header />

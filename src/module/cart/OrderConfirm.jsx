@@ -70,7 +70,10 @@ const OrderConfirm = ({closeModal}) => {
         ...values,
         id: new Date().getTime(),
         listItems: JSON.stringify(listItems),
-        createAt: new Date().getTime(),
+        status: "pending",
+        createdAt: Timestamp.now(),
+
+        // createAt: new Date().getTime(),
       }).then(() => {
         Swal.fire({
           icon: "success",

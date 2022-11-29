@@ -34,7 +34,7 @@ const Register = () => {
         phoneNumber: Number(values.phoneNumber),
         address: values.address,
 
-        role: 0,
+        role: 1,
       });
       form.resetFields();
       Swal.fire({
