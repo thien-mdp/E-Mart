@@ -41,9 +41,11 @@ const Cart = () => {
   const {openModal} = useModal();
   const {listItems} = useSelector((state) => state.cartReducer);
   const dispatch = useDispatch();
+
   const handleUpdateAmount = (id, amount) => {
-    console.log("id, amount");
+    
   };
+
   const handleDeleteItem = (id) => {
     dispatch(deleteItem(id));
   };
@@ -90,10 +92,10 @@ const Cart = () => {
           <ActionStyles>
             <Input
               addonBefore={
-                <PlusCircleOutlined onClick={() => handleUpdateAmount()} />
+                <PlusCircleOutlined onClick={(e) =>{ handleUpdateAmount(record,record.amount);}} />
               }
               addonAfter={
-                <MinusCircleOutlined onClick={() => handleUpdateAmount()} />
+                <MinusCircleOutlined onClick={(e) =>{ handleUpdateAmount(record,record.amount);}} />
               }
               value={Number(record?.amount)}
             />

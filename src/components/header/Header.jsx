@@ -98,11 +98,13 @@ const Header = () => {
         </div>
         <div className="hidden sm:flex  search-input  items-center gap-3">
           <div className="logo">
-            <a className="text-white mb-0 text-[20px] hover:text-teal-400" href="/">LOGO</a>
+            <a className="font-mono text-white mb-0 text-[20px] hover:text-teal-400" href="/">3D Printer</a>
+            {/* <img src='../../../logo.svg' className="max-w-[100px] bg-[#2bb4bf]  inline"/> */}
           </div>
         </div>
         <div className="sm:hidden logo-mobile absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4">
-          <a href="/" className="text-white hover:text-teal-400">LOGO</a>
+          <a href="/" className="font-mono text-white mb-0 text-[20px] hover:text-teal-400">3D Printer</a>
+          {/* <img src='../../../logo.svg' className="max-w-[100px] bg-[#2bb4bf] inline"/> */}
         </div>
 
         <div
@@ -111,7 +113,7 @@ const Header = () => {
         >
           <div onClick={hanleClickCart} className="cart hover:text-teal-400 ">
             <AiOutlineShoppingCart className="cursor-pointer w-7 h-7" />
-            <div className="has-item bg-red-800">
+            <div className="has-item bg-red-800 animate-bounce ">
               {listItems && listItems.length}
             </div>
           </div>
