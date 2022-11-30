@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 const OrderManagementStyles = styled.div`
   .ant-table-content > table > tbody > tr.pending {
-    background-color: orange;
+    background-color: rgba(0, 122, 255, 0.4);
   }
 `;
 const OrderManagement = () => {
@@ -70,7 +70,7 @@ const OrderManagement = () => {
       dataIndex: "action",
       key: "action",
       render: (text, record) => (
-        <Button className="flex items-center" icon={<MailOutlined />}>
+        <Button className="flex items-center hover:bg-blue-500 hover:text-white" icon={<MailOutlined />}>
           Send
         </Button>
       ),
@@ -98,7 +98,31 @@ const OrderManagement = () => {
 
   return (
     <OrderManagementStyles>
+      <div className="bg-no-repeat bg-cover bg-center flex w-full justify-between">
+        <div className="flex justify-around items-center bg-amber-400 rounded-xl !w-1/3 lg:w-80 p-8 pt-9 my-3 mr-2 h-44">
+            <div className="text-center">
+                <p className="font-bold text-black text-[16px]">Tổng số đơn hàng</p>
+                <p className="text-2xl hover:text-white cursor-pointer">25</p>
+            </div>
+            {/* <AiOutlinePayCircle className="w-10 h-10 text-white"/> */}
+        </div>
+        <div className="flex justify-around items-center bg-green-500 rounded-xl !w-1/3 lg:w-80 p-8 pt-9 my-3 mr-2 h-44">
+            <div className="text-center">
+                <p className="font-bold text-white text-[16px]">Tổng doanh thu</p>
+                <p className="text-2xl hover:text-white cursor-pointer">$3,448</p>
+            </div>
+            {/* <AiOutlineShoppingCart className="w-10 h-10 text-white"/> */}
+        </div>
+        <div className="flex justify-around items-center bg-green-500 rounded-xl !w-1/3 lg:w-80 p-8 pt-9 my-3 mr-2 h-44">
+            <div className="text-center">
+                <p className="font-bold text-white text-[16px]">Hàng tồn kho</p>
+                <p className="text-2xl hover:text-white cursor-pointer">5,202</p>
+            </div>
+            {/* <AiOutlineShoppingCart className="w-10 h-10 text-white"/> */}
+        </div>
+      </div>
       <Table
+        className="mt-10"
         loading={loading}
         rowClassName={(record, index) =>
           record.status === "pending" ? "pending" : "approved"

@@ -8,8 +8,8 @@ import {AdminProvider} from "../context/AdminContext";
 import Swal from "sweetalert2";
 const LayoutStyles = styled.div``;
 const ContainerStyles = styled.div`
-  max-width: 1200px;
-  height: 1000px;
+  max-width: 1300px;
+  height: 1100px;
   margin: 0 auto;
   z-index: 0;
   padding-top: 68px;

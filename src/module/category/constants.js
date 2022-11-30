@@ -13,7 +13,7 @@ export const CATEGORY_SLIDE = [
   },
   {
     img: "https://cdn.shopify.com/s/files/1/0633/9480/8029/t/3/assets/lcd-display-biqu-3d-printing-1651140630781.png?v=1651140629",
-    name: "LCD Display",
+    name: "Monitor",
   },
   {
     img: "https://cdn.shopify.com/s/files/1/0633/9480/8029/t/3/assets/driver-board-biqu-3d-printing-1651140668750.png?v=1651140667",
