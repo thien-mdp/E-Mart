@@ -102,7 +102,7 @@ const Header = () => {
         <div className="hidden sm:flex  search-input  items-center gap-3">
           <div className="logo">
             <a
-              className="font-mono text-white mb-0 text-[20px] hover:text-teal-400"
+              className="font-mono text-white mb-0 text-[20px] hover:text-blue-700"
               href="/"
             >
               3D Printer
@@ -113,7 +113,7 @@ const Header = () => {
         <div className="sm:hidden logo-mobile absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4">
           <a
             href="/"
-            className="font-mono text-white mb-0 text-[20px] hover:text-teal-400"
+            className="font-mono text-white mb-0 text-[20px] hover:text-blue-700"
           >
             3D Printer
           </a>
@@ -124,7 +124,7 @@ const Header = () => {
           className="action-user
                 flex items-center gap-x-5 text-white text-[20px]"
         >
-          <div onClick={hanleClickCart} className="cart hover:text-teal-400 ">
+          <div onClick={hanleClickCart} className="cart hover:text-blue-700 ">
             <AiOutlineShoppingCart className="cursor-pointer w-7 h-7" />
             <div
               className={`has-item bg-red-800 ${
@@ -144,7 +144,7 @@ const Header = () => {
                 <div className="dropdown-content">{menu}</div>
               )}
             >
-              <FaRegUserCircle className="cursor-pointer w-6 h-6 hover:text-teal-400" />
+              <FaRegUserCircle className="cursor-pointer w-6 h-6 hover:text-blue-700" />
             </Dropdown>
           )}
         </div>

@@ -14,5 +14,26 @@ body {
 
 .swiper-button-next:after,
 .swiper-button-prev:after {
-  @apply text-teal-400;
+  @apply text-blue-700;
+}
+.swiper-slide {
+  min-height: 100% !important;
+  height: 100%;
+}
+.ant-btn.ant-btn-primary.ant-btn-sm{
+  border: 1px solid red;
+}
+.ant-btn.ant-btn-primary.ant-btn-sm:hover{
+  background-color: rgba(255, 0, 0,0.3);
+}
+.ant-btn.ant-btn-primary.ant-btn-sm span{
+  color: red;
+}
+
+.handle-truncate {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

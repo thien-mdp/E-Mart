@@ -16,8 +16,6 @@ const ContainerStyles = styled.div`
   padding-right: 20px;
 `;
 const HomeLayout = () => {
-  const {loading} = useSelector((state) => state.authReducer);
-
   return (
     <LayoutStyles>
       <Header />

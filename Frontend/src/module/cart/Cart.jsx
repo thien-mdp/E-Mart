@@ -11,7 +11,7 @@ import {
 import {useModal} from "../../context/ModalContext";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import {deleteItem} from "../../stores/Cart/cartSlice";
+import {deleteItem, UpdateAmount} from "../../stores/Cart/cartSlice";
 
 const CartStyles = styled.div`
   width: 100%;
@@ -41,11 +41,13 @@ const Cart = () => {
   const {openModal} = useModal();
   const {listItems} = useSelector((state) => state.cartReducer);
   const dispatch = useDispatch();
+  const [amount, setAmount] = React.useState(1);
 
   const handleUpdateAmount = (id, amount) => {
-    
+    const action = UpdateAmount({id, amount});
+    dispatch(action);
   };
-
+  
   const handleDeleteItem = (id) => {
     dispatch(deleteItem(id));
   };
@@ -91,11 +93,22 @@ const Cart = () => {
         return (
           <ActionStyles>
             <Input
+              onChange={(e) =>
+                dispatch(UpdateAmount(record.id, e.target.value))
+              }
               addonBefore={
-                <PlusCircleOutlined onClick={(e) =>{ handleUpdateAmount(record,record.amount);}} />
+                <MinusCircleOutlined
+                  onClick={(e) => {
+                    handleUpdateAmount(record.id, -1);
+                  }}
+                />
               }
               addonAfter={
-                <MinusCircleOutlined onClick={(e) =>{ handleUpdateAmount(record,record.amount);}} />
+                <PlusCircleOutlined
+                  onClick={(e) => {
+                    handleUpdateAmount(record.id, 1);
+                  }}
+                />
               }
               value={Number(record?.amount)}
             />

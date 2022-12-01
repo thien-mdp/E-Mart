@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import {Link} from "react-router-dom";
 import slugify from "slugify";
@@ -14,11 +14,67 @@ import {Button} from "antd";
 import {AiOutlineArrowRight} from "react-icons/ai";
 import {CardSeeMore} from "../../components/card/Card";
 import TitleImage from "../../components/TitleImage/TitleImage";
-import {collection, getDocs, query, where} from "firebase/firestore";
+import {collection, getDocs, limit, query, where} from "firebase/firestore";
 import {db} from "../../firebase";
 
 const HomeStyles = styled.div``;
 const Home = () => {
+  const [newProduct, setNewProduct] = useState([]);
+  const [controlBoard, setControlBoard] = useState([]);
+  const [extruder, setExtruder] = useState([]);
+  const [printer, setPrinter] = useState([]);
+  useEffect(() => {
+    const docRef = query(collection(db, "products"), limit(10));
+    getDocs(docRef).then((querySnapshot) => {
+      const data = [];
+      querySnapshot.forEach((doc) => {
+        data.push(doc.data());
+      });
+      setNewProduct(data);
+    });
+  }, []);
+  useEffect(() => {
+    const docRef = query(
+      collection(db, "products"),
+      where("category", "==", "3D Printer"),
+      limit(4)
+    );
+    getDocs(docRef).then((querySnapshot) => {
+      const data = [];
+      querySnapshot.forEach((doc) => {
+        data.push(doc.data());
+      });
+      setPrinter(data);
+    });
+  }, []);
+  useEffect(() => {
+    const docRef = query(
+      collection(db, "products"),
+      where("category", "==", "Control Board"),
+      limit(4)
+    );
+    getDocs(docRef).then((querySnapshot) => {
+      const data = [];
+      querySnapshot.forEach((doc) => {
+        data.push(doc.data());
+      });
+      setControlBoard(data);
+    });
+  }, []);
+  useEffect(() => {
+    const docRef = query(
+      collection(db, "products"),
+      where("category", "==", "Extruder Kit"),
+      limit(4)
+    );
+    getDocs(docRef).then((querySnapshot) => {
+      const data = [];
+      querySnapshot.forEach((doc) => {
+        data.push(doc.data());
+      });
+      setExtruder(data);
+    });
+  }, []);
   return (
     <HomeStyles>
       <div className="ads-container ">
@@ -67,7 +123,7 @@ const Home = () => {
               />
             </div>
             <div className="product-title text-center">
-              <span className="text-[10px] sm:text-[13px] md:text-[14px] text-black  font-extralight group-hover:text-teal-400">
+              <span className="text-[10px] sm:text-[13px] md:text-[14px] text-black  font-extralight group-hover:text-blue-700">
                 3D Printer
               </span>
             </div>
@@ -87,7 +143,7 @@ const Home = () => {
               />
             </div>
             <div className="product-title text-center">
-              <span className="text-[10px] sm:text-[13px] md:text-[14px]  text-black font-extralight group-hover:text-teal-400">
+              <span className="text-[10px] sm:text-[13px] md:text-[14px]  text-black font-extralight group-hover:text-blue-700">
                 Control Board
               </span>
             </div>
@@ -107,7 +163,7 @@ const Home = () => {
               />
             </div>
             <div className="product-title text-center w-full ">
-              <span className="text-[10px] sm:text-[13px] md:text-[14px] text-black font-extralight group-hover:text-teal-400">
+              <span className="text-[10px] sm:text-[13px] md:text-[14px] text-black font-extralight group-hover:text-blue-700">
                 Extruder
               </span>
             </div>
@@ -127,7 +183,7 @@ const Home = () => {
               />
             </div>
             <div className="product-title text-center">
-              <span className="text-[10px] sm:text-[13px] md:text-[14px] text-black font-extralight group-hover:text-teal-400">
+              <span className="text-[10px] sm:text-[13px] md:text-[14px] text-black font-extralight group-hover:text-blue-700">
                 Monitor
               </span>
             </div>
@@ -153,64 +209,32 @@ const Home = () => {
           modules={[Navigation]}
           className="mySwiper"
         >
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
+          {newProduct.length > 0 &&
+            newProduct.map((item) => (
+              <SwiperSlide key={item.id}>
+                <Card newPr={true} data={item} />
+              </SwiperSlide>
+            ))}
         </Swiper>
       </div>
       <TitleImage>Control Board</TitleImage>
       <div className="product-list 	  w-full grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 place-items-center gap-2 my-5">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <CardSeeMore />
+        {controlBoard.length > 0 &&
+          controlBoard.map((item) => <Card data={item} />)}
+        <CardSeeMore to="/category?name=Control-Board" />
       </div>
 
       <TitleImage img="bg-h2-extruders">H2 Series Extruders</TitleImage>
 
       <div className="product-list 	  w-full grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 place-items-center gap-2 my-5">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <CardSeeMore />
+        {extruder.length > 0 && extruder.map((item) => <Card data={item} />)}
+        <CardSeeMore to="/category?name=Extruder-Kit" />
       </div>
 
       <TitleImage img="bg-3d-printer">3D Printers</TitleImage>
       <div className="product-list 	  w-full grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 place-items-center gap-2 my-5">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <CardSeeMore />
+        {printer.length > 0 && printer.map((item) => <Card data={item} />)}
+        <CardSeeMore to="/category?name==3D-Printer" />
       </div>
     </HomeStyles>
   );
