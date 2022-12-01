@@ -1,131 +1,33 @@
 import "antd/dist/antd.css";
-import { Button, Input, Table } from "antd";
-import {
-  SearchOutlined,
-  DeleteOutlined,
-} from "@ant-design/icons";
+import {Button, Input, Table} from "antd";
+import {SearchOutlined, DeleteOutlined} from "@ant-design/icons";
+import {deleteDoc, doc} from "firebase/firestore";
+import Swal from "sweetalert2";
+import {db} from "../../firebase";
 
-const UserTable = (props) => {
-  const data = [
-    {
-      username: 'thienmai',
-      fullName: 'Mai Đức Phong Thiên',
-      birthday: '13/12/2000',
-      address: 'New York No. 1 Lake Park',
-      email: 'thienmai1312@gmail.com',
-      gender: 'male',
-      role: 'customer'
-    },
-    {
-      username: 'thienmai13',
-      fullName: 'Mai Thiên',
-      birthday: '25/11/2000',
-      address: 'Ho Chi Minh No. 1 Lake Park',
-      email: 'abcdthien@gmail.com',
-      gender: 'male',
-      role: 'customer'
-    },
-    {
-      username: 'thienmai13',
-      fullName: 'Mai Thiên',
-      birthday: '25/11/2000',
-      address: 'New York No. 1 Lake Park',
-      email: 'abcdthien@gmail.com',
-      gender: 'male',
-      role: 'customer'
-    },
-    {
-      username: 'dophanduong',
-      fullName: 'Phan Duong Ngoc Do',
-      birthday: '15/07/2000',
-      address: 'New York No. 2 Lake Park',
-      email: 'dodev2k@gmail.com',
-      gender: 'male',
-      role: 'customer'
-    },
-    {
-      username: 'dophanduong',
-      fullName: 'Phan Duong Ngoc Do',
-      birthday: '15/07/2000',
-      address: 'BangKok No. 2 Lake Park',
-      email: 'dodev2k@gmail.com',
-      gender: 'male',
-      role: 'customer'
-    },
-    {
-      username: 'dophanduong',
-      fullName: 'Phan Duong Ngoc Do',
-      birthday: '15/07/2000',
-      address: 'Ha Noi No. 1 Lake Park',
-      email: 'dodev2k@gmail.com',
-      gender: 'male',
-      role: 'customer'
-    },
-  ]
+const UserTable = ({data, fetchData}) => {
+  const handleDeleteUser = async (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await deleteDoc(doc(db, "users", id));
+        await fetchData();
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+      }
+    });
+  };
   const columns = [
-    {
-      title: "User Name",
-      dataIndex: "username",
-      filterDropdown: ({
-        setSelectedKeys,
-        selectedKeys,
-        confirm,
-        clearFilters,
-      }) => {
-        return (
-          <>
-            <Input
-              autoFocus
-              placeholder="Type here to Search"
-              value={selectedKeys[0]}
-              onChange={(e) => {
-                setSelectedKeys(e.target.value ? [e.target.value] : []);
-                confirm({ closeDropdown: false });
-              }}
-              onPressEnter={() => {
-                confirm();
-              }}
-              onBlur={() => {
-                confirm();
-              }}
-            ></Input>
-            <Button
-              type="primary"
-              onClick={() => {
-                confirm();
-              }}
-            >
-              Search
-            </Button>
-            <Button
-              onClick={() => {
-                clearFilters();
-                confirm();
-              }}
-              type="danger"
-            >
-              Reset
-            </Button>
-          </>
-        );
-      },
-      filterIcon: () => {
-        return <SearchOutlined />;
-      },
-      onFilter: (value, record) => {
-        return record.username.toLowerCase().includes(value.toLowerCase());
-      },
-      sorter: (record1, record2) => {
-        return record1.username > record2.username;
-      },
-    },
-    
     {
       title: "Full Name",
       dataIndex: "fullName",
-      sorter: (record1, record2) => {
-        return record1.fullName > record2.fullName;
-      },
+      render: (text, record) => <span>{record?.fullname}</span>,
     },
     {
       title: "Birthday",
@@ -156,8 +58,8 @@ const UserTable = (props) => {
         return (
           <>
             <DeleteOutlined
-              style={{ color: "red", marginLeft: "1rem" }}
-              onClick={() => {props.onDelete(record)}}
+              style={{color: "red", marginLeft: "1rem"}}
+              onClick={() => handleDeleteUser(record.idDoc)}
             />
           </>
         );

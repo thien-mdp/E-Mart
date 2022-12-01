@@ -36,13 +36,20 @@ export const cartSlice = createSlice({
     },
     UpdateAmount: (state, action) => {
       const cloneData = [...state.listItems];
+
       const index = cloneData.findIndex(
         (item) => item.id === action.payload.id
       );
+
       if (index >= 0) {
-        cloneData[index].amount += action.payload.amount;
+        if (cloneData[index].amount <= 0) {
+          cloneData.splice(index, 1);
+        } else {
+          cloneData[index].amount += Number(action.payload.amount);
+        }
       }
       state.listItems = cloneData;
+      localStorage.setItem("cart", JSON.stringify(state.listItems));
     },
     ClearItems: (state, action) => {
       state.listItems = [];

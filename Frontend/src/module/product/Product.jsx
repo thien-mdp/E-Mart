@@ -140,7 +140,7 @@ const Product = () => {
                       setAmount((prev) => (prev === 1 ? 1 : prev - 1))
                     }
                     htmlType="button"
-                    className="text-white text-center flex items-center justify-center bg-teal-400 rounded-full"
+                    className="text-white text-center flex items-center justify-center bg-blue-700 rounded-full"
                     icon={<AiOutlineMinusCircle />}
                   />
                   <input
@@ -152,18 +152,18 @@ const Product = () => {
                   <Button
                     onClick={() => setAmount((prev) => prev + 1)}
                     htmlType="button"
-                    className="  text-white text-center flex items-center justify-center bg-teal-400 rounded-full"
+                    className="  text-white text-center flex items-center justify-center bg-blue-700 rounded-full"
                     icon={<AiOutlinePlusCircle />}
                   />
                 </div>
                 <div className="flex flex-col md:flex-row items-center justify-between gap-2 w-full mb-3 md:mb-5">
                   <Button
                     onClick={handleSelectItem}
-                    className="w-full text-center flex items-center justify-center p-3 border-2 border-teal-400 text-teal-400"
+                    className="w-full text-center flex items-center justify-center p-3 border-2 border-blue-700 text-blue-700"
                   >
                     Add to Cart
                   </Button>
-                  <Button className="w-full text-center flex items-center justify-center p-3 border-2 border-teal-400  bg-teal-400 text-white">
+                  <Button className="w-full text-center flex items-center justify-center p-3 border-2 border-blue-700  bg-blue-700 text-white">
                     Buy it now
                   </Button>
                 </div>
@@ -176,19 +176,19 @@ const Product = () => {
                     />
                   </div>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-3 ">
-                    <div className="icon-text flex flex-1 items-center leading-3 gap-x-1 whitespace-normal border border-teal-400 w-fit text-teal-400 p-1 px-2 rounded-lg">
+                    <div className="icon-text flex flex-1 items-center leading-3 gap-x-1 whitespace-normal border border-blue-700 w-fit text-blue-700 p-1 px-2 rounded-lg">
                       <BsBoxSeam className="text-2xl " />
                       <p className="text-[10px] sm:text-[12px] font-normal">
                         <span>Global shipping</span>
                       </p>
                     </div>
-                    <div className="icon-text flex flex-1 items-center leading-3 gap-x-1 whitespace-normal border border-teal-400 bg-teal-400 w-fit text-white p-1 px-2 rounded-lg">
+                    <div className="icon-text flex flex-1 items-center leading-3 gap-x-1 whitespace-normal border border-blue-700 bg-blue-700 w-fit text-white p-1 px-2 rounded-lg">
                       <BsShieldFillCheck className="text-2xl" />
                       <p className="text-[10px] sm:text-[12px] font-normal">
                         <span>Global shipping</span>
                       </p>
                     </div>
-                    <div className="icon-text flex flex-1 items-center leading-3 whitespace-normal gap-x-1 border border-teal-400 w-fit text-teal-400 p-1 px-2 rounded-lg">
+                    <div className="icon-text flex flex-1 items-center leading-3 whitespace-normal gap-x-1 border border-blue-700 w-fit text-blue-700 p-1 px-2 rounded-lg">
                       <BiCreditCard className="text-2xl" />
                       <p className="text-[10px] sm:text-[12px] font-normal">
                         <span>Global shipping</span>

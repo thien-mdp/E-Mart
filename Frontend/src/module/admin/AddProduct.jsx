@@ -236,7 +236,7 @@ const AddProduct = () => {
           disabled={loading}
           loading={loading}
           type="primary"
-          className="w-full bg-teal-400 border-none outline-none"
+          className="w-full bg-blue-700 border-none outline-none"
           htmlType="submit"
         >
           Submit

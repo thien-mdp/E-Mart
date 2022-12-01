@@ -129,7 +129,7 @@ const Register = () => {
             loading={loading}
             disabled={loading}
             htmlType="submit"
-            className="text-white bg-teal-400 hover:bg-white"
+            className="text-white bg-blue-700 hover:bg-white"
           >
             Register
           </Button>

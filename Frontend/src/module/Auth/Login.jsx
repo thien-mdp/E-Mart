@@ -69,7 +69,7 @@ const Login = ({title}) => {
           </Form.Item>
           <div className="mb-3 text-[10px] text-center">
             If you don't have an account, please{" "}
-            <a href="/register" className="text-teal-400" target="_blank">
+            <a href="/register" className="text-blue-700" target="_blank">
               Register
             </a>
           </div>
@@ -77,7 +77,7 @@ const Login = ({title}) => {
             loading={loading}
             disabled={loading}
             htmlType="submit"
-            className="text-white bg-teal-400 hover:bg-white"
+            className="text-white bg-blue-700 hover:bg-white"
           >
             Login
           </Button>

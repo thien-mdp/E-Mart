@@ -5,11 +5,12 @@ import Card from "../../components/card";
 import TitleImage from "../../components/TitleImage/TitleImage";
 import {Select, Spin} from "antd";
 import Related from "../../components/related";
-import {collection, getDocs, query, where} from "firebase/firestore";
+import {collection, getDocs, orderBy, query, where} from "firebase/firestore";
 import {db} from "../../firebase";
 import {Link, useSearchParams} from "react-router-dom";
 import slugify from "slugify";
 import {AiOutlineDropbox} from "react-icons/ai";
+import {orderByChild} from "firebase/database";
 const CategoryStyles = styled.div``;
 const Category = () => {
   const [products, setProducts] = React.useState([]);
@@ -23,7 +24,11 @@ const Category = () => {
       try {
         const colRef = collection(db, "products");
         const documentSnapshots = await getDocs(
-          query(colRef, where("category", "==", nameCategory))
+          query(
+            colRef,
+
+            where("category", "==", nameCategory)
+          )
         );
         const getData = documentSnapshots.docs.map((doc) => doc.data());
 

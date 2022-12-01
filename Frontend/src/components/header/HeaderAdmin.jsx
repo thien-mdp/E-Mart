@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {
   AiOutlineArrowLeft,
   AiOutlineBars,
@@ -11,6 +11,8 @@ import {SidebarData} from "../sidebar/Sidebar";
 import classes from "./HeaderAdmin.module.css";
 import "antd/dist/antd.css";
 import {Link} from "react-router-dom";
+import {BellOutlined} from "@ant-design/icons";
+import {useSelector} from "react-redux";
 
 const HeaderStyles = styled.header`
   .cart {
@@ -35,7 +37,27 @@ const HeaderAdmin = () => {
   const [showMenu, setShowMenu] = React.useState(false);
   const [bgHeader, setBgHeader] = React.useState(false);
   const [sidebar, setSidebar] = useState(false);
-
+  const {orders} = useSelector((state) => state.orderReducer);
+  const [show, setShow] = React.useState(false);
+  const elementRef = React.useRef(null);
+  const buttonBtn = React.useRef(null);
+  const getOrderPending = React.useMemo(() => {
+    return orders.filter((item) => item.status === "pending");
+  }, [orders]);
+  useEffect(() => {
+    const checkOnClickOutside = (event) => {
+      if (buttonBtn.current && buttonBtn.current.contains(event.target)) {
+        return;
+      }
+      if (elementRef.current && !elementRef.current.contains(event.target)) {
+        setShow(false);
+      }
+    };
+    document.addEventListener("mousedown", checkOnClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", checkOnClickOutside);
+    };
+  }, []);
   const showSidebar = (event) => {
     event.preventDefault();
     setSidebar(!sidebar);
@@ -56,7 +78,7 @@ const HeaderAdmin = () => {
     <div>
       <HeaderStyles
         className={`py-3  top-header z-[999]  w-full transition-all fixed  h-[68px]  right-0 left-0 ${
-          bgHeader ? "bg-teal-400 " : "bg-[#060b26]"
+          bgHeader ? "bg-blue-700 " : "bg-[#060b26]"
         }`}
       >
         <div className="mx-auto h-full  max-w-[1200px] flex items-center justify-between">
@@ -82,6 +104,59 @@ const HeaderAdmin = () => {
             className="action-user
                 flex items-center gap-x-5 text-white text-[20px]"
           >
+            <div className="relative flex items-center">
+              <button
+                ref={buttonBtn}
+                onClick={() => setShow((prev) => !prev)}
+                className="inline-block relative"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6 text-white"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                  />
+                </svg>
+                <span className="animate-ping absolute top-1 right-0.5 block h-1 w-1 rounded-full ring-2 ring-red-700 bg-red-700"></span>
+              </button>
+              {show && (
+                <div
+                  ref={elementRef}
+                  className="absolute w-[300px] left-2/4 -translate-x-2/4 bg-white  top-[120%] max-w-[300px] p-3 shadow-md"
+                >
+                  <div className="mb-5">
+                    <h4 className="text-base font-medium">Notification</h4>
+                  </div>
+                  <Link to="/admin">
+                    <div className="flex items-center hover:bg-blue-200">
+                      <div className="pr-2">
+                        <img
+                          src="https://images.unsplash.com/photo-1661961110372-8a7682543120?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                          className="object-cover  w-10 h-10 rounded-full"
+                          alt="icon"
+                        />
+                      </div>
+                      <div>
+                        <p className="text-gray-700 text-sm">
+                          you have{" "}
+                          <span className="text-orange-500 font-bold">
+                            {getOrderPending.length}
+                          </span>{" "}
+                          new orders
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              )}
+            </div>
             <FaRegUserCircle className="cursor-pointer" />
           </div>
         </div>
@@ -94,7 +169,6 @@ const HeaderAdmin = () => {
           <div className="btn-close">
             <AiOutlineClose onClick={() => setShowMenu(!showMenu)} />
           </div>
-          djsabdbsada
         </div>
       </HeaderStyles>
       <nav
