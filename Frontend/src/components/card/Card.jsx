@@ -4,9 +4,10 @@ import {useDispatch} from "react-redux";
 import {Link} from "react-router-dom";
 import {addToCart} from "../../stores/Cart/cartSlice";
 
+
+
 const Card = ({data, newPr = false}) => {
   const dispatch = useDispatch();
-
   return (
     <div className="w-full h-full max-w-sm bg-white rounded-lg shadow-md ">
       <Link to={`/product/${data?.id}`} href="#" className="group">
@@ -18,7 +19,7 @@ const Card = ({data, newPr = false}) => {
       </Link>
       <div className="px-5 pb-5">
         <Link to={`/product/${data?.id}`}>
-          <h5 className="text-xl font-semibold tracking-tight text-gray-900 ">
+          <h5 className="handle-truncate text-xl font-semibold tracking-tight text-gray-900 h-[115px] w-full">
             {data?.title}
           </h5>
         </Link>
