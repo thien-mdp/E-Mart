@@ -61,7 +61,7 @@ const ManageUser = () => {
     <AdminStyles>
       <div className="container-fluid">
         <div className="bg-no-repeat bg-cover bg-center flex w-full justify-between">
-          <div className="flex flex-col justify-center items-center bg-blue-700 rounded-xl !w-2/3 !h-auto lg:w-80 p-8 pt-9 my-3 mr-9 h-44">
+          <div className="flex flex-col justify-center items-center bg-rose-200 rounded-xl !w-2/3 !h-auto lg:w-80 p-8 pt-9 my-3 mr-9 h-44">
             <div className="text-center">
               <p className="font-bold text-black text-[16px]">
                 Tổng số người dùng

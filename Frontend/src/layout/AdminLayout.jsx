@@ -80,7 +80,8 @@ const AdminLayout = () => {
       const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
-        showConfirmButton: false,
+        showConfirmButton: true,
+        confirmButtonText:"View Details",
         timer: 3000,
         timerProgressBar: true,
         didOpen: (toast) => {
@@ -88,10 +89,11 @@ const AdminLayout = () => {
           toast.addEventListener("mouseleave", Swal.resumeTimer);
         },
       });
-
       Toast.fire({
         icon: "info",
         title: `you have ${getOrderPending.length} unresolved orders`,
+      }).then(() => {
+        navigate("/admin/order-management");
       });
     }
   }, [orders]);

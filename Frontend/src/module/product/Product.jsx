@@ -10,11 +10,14 @@ import ImageMagnifier from "../../components/ImageMagnifier";
 import TitleImage from "../../components/TitleImage/TitleImage";
 import Card from "../../components/card";
 import Related from "../../components/related";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {db} from "../../firebase";
 import {collection, getDocs, query, where} from "firebase/firestore";
 import {useDispatch} from "react-redux";
 import {addToCart} from "../../stores/Cart/cartSlice";
+
+
+
 const ProductStyles = styled.div`
   width: 100%;
   height: 100vh;
@@ -26,6 +29,7 @@ const Product = () => {
   const {id} = useParams();
   const [amount, setAmount] = React.useState(1);
   const dispatch = useDispatch();
+  
 
   const handleSelectItem = () => {
     const dataCart = {...data};
@@ -124,8 +128,8 @@ const Product = () => {
               <p className="text-sm md:text-base">
                 <small>
                   <strong>
-                    <a href="#" className="underline">
-                      Shipping
+                    <a href="#" className="underline mr-1">
+                      Shipping 
                     </a>
                     calculated at checkout
                   </strong>
@@ -163,9 +167,11 @@ const Product = () => {
                   >
                     Add to Cart
                   </Button>
-                  <Button className="w-full text-center flex items-center justify-center p-3 border-2 border-blue-700  bg-blue-700 text-white">
-                    Buy it now
-                  </Button>
+                  <Link to={`/cart`}>
+                    <Button onClick={handleSelectItem} className="w-full text-center flex items-center justify-center p-3 border-2 border-blue-700  bg-blue-700 text-white">
+                      Buy it now
+                    </Button>
+                  </Link>
                 </div>
                 <div className="block-paypal flex flex-col gap-3 mb-3">
                   <div className="bottom-quarter">
@@ -208,7 +214,7 @@ const Product = () => {
               DESCRIPTION
             </TitleImage>
           </div>
-          <div className="desc-main mx-3">{data?.description}</div>
+          <div className="desc-main mx-3" dangerouslySetInnerHTML={{ __html: data?.description }}></div>
         </div>
       </div>
       <Related

@@ -106,9 +106,11 @@ const Category = () => {
               <Spin />
             </div>
           ) : products.length > 0 ? (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 ">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
               {products.map((item, index) => (
-                <Card key={item.id} data={item} />
+                <div className="my-3 mx-2">
+                  <Card key={item.id} data={item} />
+                </div>
               ))}
             </div>
           ) : (

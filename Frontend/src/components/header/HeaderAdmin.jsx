@@ -134,7 +134,7 @@ const HeaderAdmin = () => {
                   <div className="mb-5">
                     <h4 className="text-base font-medium">Notification</h4>
                   </div>
-                  <Link to="/admin">
+                  <Link to="/admin/order-management">
                     <div className="flex items-center hover:bg-blue-200">
                       <div className="pr-2">
                         <img
