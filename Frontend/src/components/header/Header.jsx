@@ -33,6 +33,7 @@ const HeaderStyles = styled.header`
 const Header = () => {
   const [showMenu, setShowMenu] = React.useState(false);
   const {user} = useSelector((state) => state.authReducer);
+  const [bgHeader, setBgHeader] = React.useState(false);
   const {listItems} = useSelector((state) => state.cartReducer);
   const {openModal} = useModal();
   const dispatch = useDispatch();
@@ -92,9 +93,22 @@ const Header = () => {
   const handleClickChangePassword = () => {
     openModal("changePassword");
   }
+  React.useLayoutEffect(() => {
+    const handleScroll = () => {
+      const offset = window.scrollY;
+      if (offset > 120) {
+        setBgHeader(true);
+      } else {
+        setBgHeader(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+  }, []);
   return (
     <HeaderStyles
-      className={`py-3  top-header z-[999]  w-full transition-all fixed  h-[68px]  right-0 left-0 bg-black
+      className={`py-3  top-header z-[999]  w-full transition-all fixed  h-[68px]  right-0 left-0 ${
+        bgHeader ? "bg-blue-700" : "bg-black"
+      }
       }`}
     >
       <div className="mx-auto px-5  h-full  max-w-[1200px] flex items-center justify-between">
