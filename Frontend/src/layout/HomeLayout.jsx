@@ -17,13 +17,15 @@ const ContainerStyles = styled.div`
 `;
 const HomeLayout = () => {
   return (
+    <>
     <LayoutStyles>
       <Header />
       <ContainerStyles>
         <Outlet />
       </ContainerStyles>
-      {/* <Footer /> */}
+      <Footer />
     </LayoutStyles>
+    </>
   );
 };
 

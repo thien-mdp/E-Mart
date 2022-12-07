@@ -3,9 +3,15 @@ import {
   AiOutlineUsergroupDelete,
   AiOutlineSchedule,
   AiOutlineFolderAdd,
+  AiOutlineRollback,
 } from "react-icons/ai";
 
 export const SidebarData = [
+  {
+    title: "Back to my Website ",
+    path: "/",
+    icon: <AiOutlineRollback className="mr-2"></AiOutlineRollback>,
+  },
   {
     title: "Add Product ",
     path: "/admin/add-product",

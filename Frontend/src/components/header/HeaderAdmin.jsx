@@ -78,7 +78,7 @@ const HeaderAdmin = () => {
     <div>
       <HeaderStyles
         className={`py-3  top-header z-[999]  w-full transition-all fixed  h-[68px]  right-0 left-0 ${
-          bgHeader ? "bg-blue-700 " : "bg-[#060b26]"
+          bgHeader ? "bg-blue-700 " : "bg-blue-700"
         }`}
       >
         <div className="mx-auto h-full  max-w-[1200px] flex items-center justify-between">

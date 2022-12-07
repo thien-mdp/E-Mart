@@ -42,17 +42,17 @@ const Header = () => {
     {
       key: "1",
       label: (
-        <a target="_blank" href="#" onClick={(e) => e.preventDefault()}>
+        <div target="_blank" href="#" onClick={()=>handleClickInfomation()}>
           Infomation
-        </a>
+        </div>
       ),
     },
     {
       key: "2",
       label: (
-        <a target="_blank" href="#" onClick={(e) => e.preventDefault()}>
+        <div target="_blank" href="#" onClick={()=>handleClickChangePassword()}>
           Change Password
-        </a>
+        </div>
       ),
     },
     {
@@ -86,7 +86,12 @@ const Header = () => {
       openModal("login");
     }
   };
-
+  const handleClickInfomation = () => {
+    openModal("infomation");
+  }
+  const handleClickChangePassword = () => {
+    openModal("changePassword");
+  }
   return (
     <HeaderStyles
       className={`py-3  top-header z-[999]  w-full transition-all fixed  h-[68px]  right-0 left-0 bg-black

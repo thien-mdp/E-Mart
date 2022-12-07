@@ -15,12 +15,14 @@ import {db} from "../../firebase";
 import {collection, getDocs, query, where} from "firebase/firestore";
 import {useDispatch} from "react-redux";
 import {addToCart} from "../../stores/Cart/cartSlice";
+import Footer from "../../components/footer";
 
 
 
 const ProductStyles = styled.div`
   width: 100%;
   height: 100vh;
+  z-index:999
 `;
 const Product = () => {
   const [loading, setLoading] = useState(false);

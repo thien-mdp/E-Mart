@@ -187,8 +187,8 @@ const AddProduct = () => {
     <ProductFormStyles>
       <Form form={form} onFinish={onFinish}>
         <div className="group-input">
-          <Form.Item label="title" name="title">
-            <input placeholder="tilte" disabled={loading} />
+          <Form.Item label="Title" name="title">
+            <input placeholder="Tilte" disabled={loading} />
           </Form.Item>
         </div>
         <div className="group-input upload-image">
@@ -224,11 +224,11 @@ const AddProduct = () => {
 
         <div className="group-input">
           <Form.Item label="Price" name="price">
-            <InputNumber disabled={loading} placeholder="price" />
+            <InputNumber disabled={loading} placeholder="Price" />
           </Form.Item>
 
           <Form.Item label="Amount" name="amount">
-            <InputNumber disabled={loading} placeholder="amount" />
+            <InputNumber disabled={loading} placeholder="Amount" />
           </Form.Item>
         </div>
 
@@ -236,7 +236,7 @@ const AddProduct = () => {
           disabled={loading}
           loading={loading}
           type="primary"
-          className="w-full bg-blue-700 border-none outline-none"
+          className="w-full h-[40px] bg-blue-700 border-none outline-none"
           htmlType="submit"
         >
           Submit

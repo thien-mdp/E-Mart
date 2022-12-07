@@ -1,6 +1,5 @@
 import HomeLayout from "../layout/HomeLayout";
 import AdminLayout from "../layout/AdminLayout";
-import Admin from "../module/admin/Admin";
 import ManageUser from "../module/admin/ManageUser";
 import ManageProduct from "../module/admin/ManageProduct";
 import AddProduct from "../module/admin/AddProduct";
@@ -10,6 +9,7 @@ import Home from "../module/home";
 import Product from "../module/product";
 import BlankLayout from "../layout/BlankLayout";
 import {Login, Register} from "../module/Auth";
+import OrderManagement from "../module/admin/OrderManagement";
 
 export const routesConfig = [
   {
@@ -42,7 +42,7 @@ export const routesConfig = [
     children: [
       {
         path: "/admin",
-        element: <Admin />,
+        element: <OrderManagement />,
       },
       {
         path: "/admin/user-management",

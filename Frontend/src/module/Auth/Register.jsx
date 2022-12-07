@@ -60,7 +60,7 @@ const Register = () => {
           onFinish={onFinish}
           form={form}
           autoComplete="off"
-          className="shadow-xl p-3 w-[450px] flex flex-col"
+          className="shadow-xl p-5 w-[450px] flex flex-col border-2 border-solid border-gray-300 rounded-[10px]"
         >
           <h3 className="text-center mb-5 font-medium text-lg">REGISTER</h3>
           <Form.Item
@@ -68,9 +68,9 @@ const Register = () => {
             name="fullname"
           >
             <input
-              className="w-full px-2 py-1 bg-gray-100  outline-none"
+              className="rounded-[10px] w-full h-[40px] px-2 py-1 bg-gray-100  outline-none"
               type="text"
-              placeholder="fullname"
+              placeholder="Fullname"
             />
           </Form.Item>
           <Form.Item
@@ -78,9 +78,9 @@ const Register = () => {
             name="email"
           >
             <input
-              className="w-full px-2 py-1 bg-gray-100  outline-none"
+              className="rounded-[10px] w-full h-[40px] px-2 py-1 bg-gray-100  outline-none"
               type="email"
-              placeholder="email"
+              placeholder="Email"
             />
           </Form.Item>
           <Form.Item
@@ -88,9 +88,9 @@ const Register = () => {
             name="address"
           >
             <input
-              className="w-full px-2 py-1 bg-gray-100  outline-none"
+              className="rounded-[10px] w-full h-[40px] px-2 py-1 bg-gray-100  outline-none"
               type="type"
-              placeholder="address"
+              placeholder="Address"
             />
           </Form.Item>
           <Form.Item
@@ -100,9 +100,9 @@ const Register = () => {
             name="phoneNumber"
           >
             <input
-              className="w-full px-2 py-1 bg-gray-100  outline-none"
+              className="rounded-[10px] w-full h-[40px] px-2 py-1 bg-gray-100  outline-none"
               type="number"
-              placeholder="phone number"
+              placeholder="Phone number"
             />
           </Form.Item>
           <Form.Item
@@ -110,7 +110,7 @@ const Register = () => {
             name="password"
           >
             <input
-              className="w-full px-2 py-1 bg-gray-100  outline-none"
+              className="rounded-[10px] w-full h-[40px] px-2 py-1 bg-gray-100  outline-none"
               type="password"
               placeholder="Password"
             />
@@ -120,19 +120,21 @@ const Register = () => {
             name="confirmPassword"
           >
             <input
-              className="w-full px-2 py-1 bg-gray-100 outline-none"
+              className="rounded-[10px] w-full h-[40px] px-2 py-1 bg-gray-100 outline-none"
               type="password"
               placeholder="Confirm password"
             />
           </Form.Item>
-          <Button
-            loading={loading}
-            disabled={loading}
-            htmlType="submit"
-            className="text-white bg-blue-700 hover:bg-white"
-          >
-            Register
-          </Button>
+          <div className="w-full flex justify-center">
+            <Button
+              loading={loading}
+              disabled={loading}
+              htmlType="submit"
+              className="text-white w-1/2 h-[40px] bg-blue-700 hover:bg-white rounded-[10px]"
+            >
+              Register
+            </Button>
+          </div>
         </Form>
       </div>
     </RegisterStyles>

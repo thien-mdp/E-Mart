@@ -23,7 +23,6 @@ import Product from "./module/product";
 import Category from "./module/category";
 import Cart from "./module/cart";
 import AdminLayout from "./layout/AdminLayout";
-import Admin from "./module/admin/Admin";
 import ManageUser from "./module/admin/ManageUser";
 import ManageProduct from "./module/admin/ManageProduct";
 import AddProduct from "./module/admin/AddProduct";
@@ -87,7 +86,7 @@ function App() {
           <Route path="/product/:id" element={<Product />} />
         </Route>
         <Route element={<AdminLayout />}>
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin" element={<OrderManagement />} />
           <Route path="/admin/user-management" element={<ManageUser />} />
           <Route path="/admin/product-management" element={<ManageProduct />} />
           <Route path="/admin/add-product" element={<AddProduct />} />

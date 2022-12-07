@@ -45,42 +45,44 @@ const Login = ({title}) => {
   }, [user]);
   return (
     <LoginStyles>
-      <div className="login__container w-full h-full flex items-center justify-center p-3 ms:p-0">
+      <div className="login__container w-full h-full flex items-center justify-center p-3 ms:p-0 ">
         <Form
           onFinish={onFinish}
           form={form}
           autoComplete="off"
-          className="shadow-xl p-3 w-[450px] flex flex-col"
+          className="shadow-xl p-3 w-[450px] flex flex-col border-2 border-solid border-gray-300 rounded-[10px]"
         >
           <h3 className="text-center mb-5 font-medium text-lg">{title}</h3>
           <Form.Item name="email">
             <input
-              className="w-full px-2 py-1 bg-gray-100 border-none outline-none"
+              className="w-full h-[40px] px-2 py-1 bg-gray-100 border-none outline-none"
               type="email"
               placeholder="email"
             />
           </Form.Item>
           <Form.Item name="password">
             <input
-              className="w-full px-2 py-1 bg-gray-100 border-none outline-none"
+              className="w-full h-[40px] px-2 py-1 bg-gray-100 border-none outline-none"
               type="password"
               placeholder="Password"
             />
           </Form.Item>
-          <div className="mb-3 text-[10px] text-center">
+          <div className="mb-3 text-[16px] text-center">
             If you don't have an account, please{" "}
             <a href="/register" className="text-blue-700" target="_blank">
               Register
             </a>
           </div>
-          <Button
-            loading={loading}
-            disabled={loading}
-            htmlType="submit"
-            className="text-white bg-blue-700 hover:bg-white"
-          >
-            Login
-          </Button>
+          <div className="w-full h-[40px] flex justify-center">
+            <Button
+              loading={loading}
+              disabled={loading}
+              htmlType="submit"
+              className="text-white text-[12px] h-[40px] w-1/2 bg-blue-700 hover:bg-white rounded-[10px]"
+            >
+              Login
+            </Button>
+          </div>
         </Form>
       </div>
     </LoginStyles>

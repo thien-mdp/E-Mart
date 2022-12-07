@@ -1,6 +1,7 @@
 import {Modal} from "antd";
 import React, {useCallback} from "react";
 import {Login} from "../module/Auth";
+import {ChangePassword, Infomation} from "../module/user"
 import OrderConfirm from "../module/cart/OrderConfirm";
 const ModalContext = React.createContext();
 
@@ -34,6 +35,28 @@ const ModalProvider = ({children}) => {
         width={800}
       >
         <Login title="LOGIN" />
+      </Modal>
+      <Modal
+        title="Infomation"
+        centered
+        open={open === "infomation"}
+        footer={null}
+        onOk={closeModal}
+        onCancel={closeModal}
+        width={800}
+      >
+        <Infomation title="Infomation" />
+      </Modal>
+      <Modal
+        title="ChangePassword"
+        centered
+        open={open === "changePassword"}
+        footer={null}
+        onOk={closeModal}
+        onCancel={closeModal}
+        width={800}
+      >
+        <ChangePassword title="ChangePassword" />
       </Modal>
       <Modal
         title="Order Confirmation"
