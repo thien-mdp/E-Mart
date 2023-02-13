@@ -17,12 +17,10 @@ import {useDispatch} from "react-redux";
 import {addToCart} from "../../stores/Cart/cartSlice";
 import Footer from "../../components/footer";
 
-
-
 const ProductStyles = styled.div`
   width: 100%;
   height: 100vh;
-  z-index:999
+  z-index: 999;
 `;
 const Product = () => {
   const [loading, setLoading] = useState(false);
@@ -31,7 +29,6 @@ const Product = () => {
   const {id} = useParams();
   const [amount, setAmount] = React.useState(1);
   const dispatch = useDispatch();
-  
 
   const handleSelectItem = () => {
     const dataCart = {...data};
@@ -131,7 +128,7 @@ const Product = () => {
                 <small>
                   <strong>
                     <a href="#" className="underline mr-1">
-                      Shipping 
+                      Shipping
                     </a>
                     calculated at checkout
                   </strong>
@@ -162,17 +159,40 @@ const Product = () => {
                     icon={<AiOutlinePlusCircle />}
                   />
                 </div>
-                <div className="flex flex-col md:flex-row items-center justify-between gap-2 w-full mb-3 md:mb-5">
-                  <Button
+                <div className="flex my-4 flex-row items-center  gap-2 w-full mb-3 md:mb-5">
+                  <button
                     onClick={handleSelectItem}
-                    className="w-full text-center flex items-center justify-center p-3 border-2 border-blue-700 text-blue-700"
+                    type="button"
+                    class="text-white  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >
+                    <svg
+                      aria-hidden="true"
+                      class="w-5 h-5 mr-2 -ml-1"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path>
+                    </svg>
                     Add to Cart
-                  </Button>
+                  </button>
                   <Link to={`/cart`}>
-                    <Button onClick={handleSelectItem} className="w-full text-center flex items-center justify-center p-3 border-2 border-blue-700  bg-blue-700 text-white">
+                    <button
+                      onClick={handleSelectItem}
+                      type="button"
+                      class="text-white  w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="w-5 h-5 mr-2 -ml-1"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path>
+                      </svg>
                       Buy it now
-                    </Button>
+                    </button>
                   </Link>
                 </div>
                 <div className="block-paypal flex flex-col gap-3 mb-3">
@@ -216,7 +236,10 @@ const Product = () => {
               DESCRIPTION
             </TitleImage>
           </div>
-          <div className="desc-main mx-3" dangerouslySetInnerHTML={{ __html: data?.description }}></div>
+          <div
+            className="desc-main mx-3"
+            dangerouslySetInnerHTML={{__html: data?.description}}
+          ></div>
         </div>
       </div>
       <Related

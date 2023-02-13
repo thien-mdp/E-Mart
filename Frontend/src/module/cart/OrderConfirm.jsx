@@ -63,6 +63,7 @@ const OrderConfirm = ({closeModal}) => {
   ];
 
   const onFinish = async (values) => {
+    console.log("run");
     const dbase = getDatabase();
     setLoading(true);
     try {
@@ -72,14 +73,13 @@ const OrderConfirm = ({closeModal}) => {
         listItems: JSON.stringify(listItems),
         status: "pending",
         createdAt: Timestamp.now(),
-
-        // createAt: new Date().getTime(),
       }).then(() => {
         Swal.fire({
           icon: "success",
           title: "Order success",
           text: "Thank you for your order,Please check your email for payment information",
         });
+
         dispatch(ClearItems());
         closeModal();
       });
